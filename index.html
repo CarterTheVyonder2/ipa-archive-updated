@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
-    <meta name="referrer" content="no-referrer">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="apple-mobile-web-app-title" content="IPA Archive">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="style.css" media="screen" type="text/css">
+    <script src="script.js" type="text/javascript" defer></script>
     <title>IPA Archive</title>
-    <link rel="shortcut icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="stylesheet" href="style.css">
-    <script src='script.js'></script>
+    <meta name="Keywords" content="ipa, archive, ios apps, ipa download">
+    <meta name="description" content="IPA archive for iOS applications">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        #content {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
-<body>
-    <div class="center">
-        <button onclick="randomIPA()" class="styled-button">Random</button>
-        <h1>IPA Archive</h1>
+<body class="applist">
+    <div id="topbar">
+        <div id="title">IPA Archive</div>
     </div>
     
-    <form class="searchbox" onsubmit="event.preventDefault(); searchIPA(); return false;" autocomplete="off">
-        <input id="page" type="hidden">
-        <input id="minid" type="hidden">
-        <div class="form-group">
+    <div id="content">
+        <form class="searchbox" onsubmit="event.preventDefault(); searchIPA(); return false;" autocomplete="off">
+            <input id="page" type="hidden">
+            <input id="minid" type="hidden">
             <label for="search">Search: <input id="search" placeholder="Search"></label>
             <label for="bundleid">BundleId: <input id="bundleid" placeholder="com.gameloft."></label>
             <label for="unique">Unique: <input id="unique" type="checkbox" checked></label>
-        </div>
-        <div class="form-group">
             <label for="minos">Min OS: <input id="minos" placeholder="1.0"></label>
             <label for="maxos">Max OS: <input id="maxos" placeholder="5.1.1"></label>
             <label for="device">Device: <select id="device">
@@ -36,42 +43,37 @@
                 <option value="3">TV</option>
                 <option value="4">Watch</option>
             </select></label>
-        </div>
-        <button type="submit" class="styled-button">Search</button>
-    </form>
-    
-    <div id="content">JavaScript disabled?</div>
-    
-    <div id="templates" hidden>
-        <div class="entry full">
-            <div>
-                <img src="$IMG" class="app-image">
-                <button onclick="installIPA($IDX)" class="styled-button">Install</button>
-            </div>
-            <div class="info">
-                <h4>$TITLE</h4>
-                <p>BundleId: $BUNDLEID</p>
-                <p>Version: v$VERSION – $SIZE</p>
-                <p>Device: $PLATFORM</p>
-                <p>Minimum OS: $MINOS</p>
-                <p>Link: <a href="$URL" rel="noopener noreferrer nofollow">$URLNAME</a></p>
+            <button type="submit" class="styled-button">Search</button>
+        </form>
+        
+        <div id="templates" hidden>
+            <div class="app-entry">
+                <a class="noeffect" href="javascript:void(0)">
+                    <span class="app-icon" style="background-image: url('$IMG')"></span>
+                    <div class="app-info">
+                        <span class="app-title">$TITLE</span>
+                        <span class="app-version">v$VERSION</span>
+                        <span class="app-requirement">Requires iOS $MINOS or Above ($PLATFORM)</span>
+                    </div>
+                    <button class="install-button" onclick="installIPA($IDX)">Install</button>
+                </a>
             </div>
         </div>
+
+        <ul id="app-list" style="display: none; margin-top: 20px;"></ul>
     </div>
-    
-    <div id="overlay" hidden>
-        <div id="installMsg" class="modal">
-            <h3>Install on Device</h3>
-            <p>This function is not possible with static HTML+JS. You must provide a plist generator URL.</p>
-            <form onsubmit="event.preventDefault(); setPlistGen(); return false;" autocomplete="off">
-                <label for="plistServer">Generator URL:</label>
-                <input id="plistServer" placeholder="http://192.168.0.1/">
-                <button type="submit" class="styled-button">Save</button>
-                <button type="button" class="styled-button" onclick="document.getElementById('overlay').hidden=true">Abort</button>
-            </form>
-        </div>
-    </div>
-    
-    <script>loadDB()</script>
+
+    <script>
+        window.onload = function() {
+            if (!document.getElementById("templates")) {
+                console.error("Missing templates div");
+            }
+        };
+
+        function displayResults() {
+            document.getElementById("app-list").style.display = "block";
+        }
+    </script>
 </body>
+
 </html>

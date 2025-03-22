@@ -1,77 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
-	<meta name="referrer" content="no-referrer">
-	<title>IPA Archive</title>
-	<link rel="shortcut icon" href="./favicon.ico">
-	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-	<link rel="stylesheet" href="style.css">
-	<script src='script.js'></script>
-	<style>
-		#content {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 16px;
-			justify-content: center;
-		}
-
-		.entry {
-			width: 200px;
-			border: 1px solid #ccc;
-			border-radius: 10px;
-			padding: 10px;
-			text-align: center;
-			background-color: #f9f9f9;
-		}
-
-		.entry img {
-			width: 100%;
-			height: auto;
-			border-radius: 8px;
-		}
-	</style>
-</head>
-
-<body>
-	<button style="float: right; margin: 0 16px" onclick="randomIPA()">Random</button>
-	<h1>IPA Archive</h1>
-	<form onsubmit="event.preventDefault(); searchIPA(); return false;" autocomplete="off">
-		<input id="page" hidden>
-		<input id="minid" hidden>
-		<label for="search">Search: <input id="search" placeholder="Search"></label>
-		<label for="bundleid">BundleId: <input id="bundleid" placeholder="com.gameloft."></label>
-		<label for="unique">Unique: <input id="unique" type="checkbox" checked></label>
-		<label for="minos">min OS: <input id="minos" placeholder="1.0"></label>
-		<label for="maxos">max OS: <input id="maxos" placeholder="5.1.1"></label>
-		<label for="device">Device: <select id="device">
-				<option value="">Any</option>
-				<option value="1">iPhone</option>
-				<option value="2">iPad</option>
-				<option value="3">TV</option>
-				<option value="4">Watch</option>
-			</select></label>
-		<button type="submit">Search</button>
-	</form>
-
-	<div id="content">JavaScript disabled?</div>
-
-	<div id="templates" hidden>
-		<div class="entry">
-			<img src="$IMG">
-			<h4>$TITLE</h4>
-			<div>BundleId: $BUNDLEID</div>
-			<div>Version: v$VERSION – $SIZE</div>
-			<div>Device: $PLATFORM</div>
-			<div>Minimum OS: $MINOS</div>
-			<div><a href="$URL" rel="noopener noreferrer nofollow">$URLNAME</a></div>
-			<button onclick="installIPA($IDX)">Install</button>
-		</div>
-	</div>
-
-	<script>loadDB()</script>
-</body>
-
-</html>
+ <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+ <script>loadDB()</script>
+ <html lang="en">
+ 
+ <head>
+     <meta content="yes" name="apple-mobile-web-app-capable">
+     <meta name="apple-mobile-web-app-title" content="IPA Archive">
+     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+     <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport">
+     <link rel="stylesheet" href="style.css" media="screen" type="text/css">
+     <title>IPA Archive</title>
+     <meta name="Keywords" content="ipa, archive, ios apps, ipa download">
+     <meta name="description" content="IPA archive for iOS applications">
+     <script src="script.js" type="text/javascript" defer></script>
+     </style>
+ 	<meta charset="utf-8">
+ 	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+ 	<meta name="referrer" content="no-referrer">
+ 	<title>IPA Archive</title>
+ 	<link rel="shortcut icon" href="./favicon.ico">
+ 	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+ 	<link rel="stylesheet" href="style.css">
+ 	<script src='script.js'></script>
+ </head>
+ 
+ <body>
